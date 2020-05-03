@@ -8,6 +8,8 @@ ReactiveObjC (formally ReactiveCocoa or RAC) is an Objective-C framework
 inspired by [Functional Reactive Programming][]. It provides APIs for
 **composing and transforming streams of values**.
 
+> RAC灵感源于函数式编程, 提供了一些API用于组合、变换值的流.
+
 If you're already familiar with functional reactive programming or know the basic
 premise of ReactiveObjC, check out the other documentation in this folder for a
 framework overview and more in-depth information about how it all works in practice.
@@ -40,22 +42,32 @@ Rather than using mutable variables which are replaced and modified in-place,
 RAC provides signals (represented by `RACSignal`) that capture present and
 future values.
 
+> 与其使用用于替换和修改的可变变量, RAC提供了信号, 用来捕捉当前以及未来的值.
+
 By chaining, combining, and reacting to signals, software can be written
 declaratively, without the need for code that continually observes and updates
 values.
+
+> 通过**链式, 组合以及响应信号**, 程序可以声明式编写, 不用编写那些用于持续监测和更新值的代码.
 
 For example, a text field can be bound to the latest time, even as it changes,
 instead of using additional code that watches the clock and updates the
 text field every second.  It works much like KVO, but with blocks instead of
 overriding `-observeValueForKeyPath:ofObject:change:context:`.
 
+> 举个例子, 一个文本控件可以与最新的时间绑定一起, 即使时间改变, 替代了使用一些附加的代码, 用来监控时间, 以更新每一秒文本的值. 使用RAC的代码用起来很像KVO, 但是是通过block实现而不是使用 `-observeValueForKeyPath:ofObject:change:context:` .
+
 Signals can also represent asynchronous operations, much like [futures and
 promises][]. This greatly simplifies asynchronous software, including networking
 code.
 
+> 信号也可以代表异步操作, 非常像 ` feature and promises` , 这大大简化了软件的异步操作, 如异步网络操作.
+
 One of the major advantages of RAC is that it provides a single, unified
 approach to dealing with asynchronous behaviors, including delegate methods,
 callback blocks, target-action mechanisms, notifications, and KVO.
+
+> RAC的主要优点之一是它提供了一个单一的，统一的处理异步行为的方法，包括委托方法，回调块，目标动作机制，通知和KVO。
 
 Here's a simple example:
 
@@ -70,7 +82,15 @@ Here's a simple example:
 }];
 ```
 
+> 以上代码的作用, 监控self.username的值, 发生变化的时候, block会被执行, 新的值会被传入该block.
+>
+> RAC内部实现:
+>
+> RACObserve宏创建了一个信号用于发送self.name的值, 当这个值发生变化的时候, 信号会被发送, 通过调用`-subscribeNext`方法订阅该信号, 相应的block会被执行.
+
 But unlike KVO notifications, signals can be chained together and operated on:
+
+> 但与KVO不同的是, 信号可以被链接在一起, 并且可以加以一些操作.
 
 ```objc
 // Only logs names that starts with "j".
@@ -86,9 +106,13 @@ But unlike KVO notifications, signals can be chained together and operated on:
 	}];
 ```
 
+> 以上代码的作用, self.name被修改, 如username以“j”打头, 那么则订阅该信号.
+
 Signals can also be used to derive state. Instead of observing properties and
 setting other properties in response to the new values, RAC makes it possible to
 express properties in terms of signals and operations:
+
+> 信号也可以用于获得状态. 而不是监测属性和设置其他属性以相应新值, RAC很容易做到这个.
 
 ```objc
 // Creates a one-way binding so that self.createEnabled will be
@@ -106,6 +130,10 @@ RAC(self, createEnabled) = [RACSignal
 		return @([passwordConfirm isEqualToString:password]);
 	}];
 ```
+
+>  self.password 和 self.passwordConfirmation 只要一个发生变化, reduce block会被执行, 返回值会被赋值给self.createEnabled.
+
+
 
 Signals can be built on any stream of values over time, not just KVO. For
 example, they can also represent button presses:
