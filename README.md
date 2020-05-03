@@ -8,6 +8,8 @@ ReactiveObjC (formally ReactiveCocoa or RAC) is an Objective-C framework
 inspired by [Functional Reactive Programming][]. It provides APIs for
 **composing and transforming streams of values**.
 
+> RAC灵感源于函数式编程, 提供了一些API用于组合、变换值的流.
+
 If you're already familiar with functional reactive programming or know the basic
 premise of ReactiveObjC, check out the other documentation in this folder for a
 framework overview and more in-depth information about how it all works in practice.
@@ -40,9 +42,13 @@ Rather than using mutable variables which are replaced and modified in-place,
 RAC provides signals (represented by `RACSignal`) that capture present and
 future values.
 
+> 与其使用用于替换和修改的可变变量, RAC提供了信号, 用来捕捉当前以及未来的值.
+
 By chaining, combining, and reacting to signals, software can be written
 declaratively, without the need for code that continually observes and updates
 values.
+
+> 通过**链式, 组合以及响应信号**, 程序可以声明式编写, 不用编写那些用于持续监测和更新值的代码.
 
 For example, a text field can be bound to the latest time, even as it changes,
 instead of using additional code that watches the clock and updates the
