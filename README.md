@@ -138,6 +138,9 @@ RAC(self, createEnabled) = [RACSignal
 Signals can be built on any stream of values over time, not just KVO. For
 example, they can also represent button presses:
 
+> 信号可以建立在一段时间内的任何值流上，而不仅仅是KVO。对于
+> 例如，它们还可以表示按钮按下：
+
 ```objc
 // Logs a message whenever the button is pressed.
 //
@@ -154,6 +157,8 @@ self.button.rac_command = [[RACCommand alloc] initWithSignalBlock:^(id _) {
 ```
 
 Or asynchronous network operations:
+
+> 或者异步网络操作:
 
 ```objc
 // Hooks up a "Log in" button to log in over the network.
@@ -185,6 +190,10 @@ changes over time.
 Using signals for asynchronous operations makes it possible to build up more
 complex behavior by chaining and transforming those signals. Work can easily be
 triggered after a group of operations completes:
+
+> 信号也可以代表计时器, 其他UI事件, 或者任何经过时间会发生改变的东西.
+>
+> 使用信号来进行异步操作可以让许多复杂的操作变得可行.
 
 ```objc
 // Performs 2 network operations and logs a message to the console when they are
@@ -276,6 +285,8 @@ understand how to apply it to concrete problems.
 Here are some of the use cases that RAC excels at.
 
 ### Handling asynchronous or event-driven data sources
+
+> 处理异步或者事件驱动数据源
 
 Much of Cocoa programming is focused on reacting to user events or changes in
 application state. Code that deals with such events can quickly become very
@@ -483,6 +494,8 @@ RACSignal *fileSignal = [RACSignal startEagerlyWithScheduler:[RACScheduler sched
 ```
 
 ### Simplifying collection transformations
+
+> 简化集合转化
 
 Higher-order functions like `map`, `filter`, `fold`/`reduce` are sorely missing
 from Foundation, leading to loop-focused code like this:
