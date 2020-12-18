@@ -14,6 +14,8 @@ If you're already familiar with functional reactive programming or know the basi
 premise of ReactiveObjC, check out the other documentation in this folder for a
 framework overview and more in-depth information about how it all works in practice.
 
+> 如果你很熟悉函数式响应编程或者了解过 ReactiveObjC 了，去 document 文件夹看下更高级的信息吧。
+
 ## New to ReactiveObjC?
 
 ReactiveObjC is documented like crazy, and there's a wealth of introductory
@@ -38,11 +40,14 @@ If you have any further questions, please feel free to [file an issue](https://g
 
 ReactiveObjC is inspired by [functional reactive
 programming](http://blog.maybeapps.com/post/42894317939/input-and-output).
+
+> ReactiveObjC 灵感来自 函数式响应编程
+
 Rather than using mutable variables which are replaced and modified in-place,
 RAC provides signals (represented by `RACSignal`) that capture present and
 future values.
 
-> 与其使用用于替换和修改的可变变量, RAC提供了信号, 用来捕捉当前以及未来的值.
+>  RAC提供了信号, 用来捕捉当前以及未来的值，取代了替换和修改的可变变量。
 
 By chaining, combining, and reacting to signals, software can be written
 declaratively, without the need for code that continually observes and updates
@@ -211,6 +216,8 @@ triggered after a group of operations completes:
 	}];
 ```
 
+> log date: 2020.12.17 19：55
+
 Signals can be chained to sequentially execute asynchronous operations, instead
 of nesting callbacks with blocks. This is similar to how [futures and promises][]
 are usually used:
@@ -272,6 +279,12 @@ That demonstrates some of what RAC can do, but it doesn't demonstrate why RAC is
 so powerful. It's hard to appreciate RAC from README-sized examples, but it
 makes it possible to write code with less state, less boilerplate, better code
 locality, and better expression of intent.
+
+
+
+
+
+
 
 For more sample code, check out [C-41][] or [GroceryList][], which are real iOS
 apps written using ReactiveObjC. Additional information about RAC can be found
