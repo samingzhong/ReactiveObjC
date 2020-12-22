@@ -216,8 +216,6 @@ triggered after a group of operations completes:
 	}];
 ```
 
-> log date: 2020.12.17 19：55
-
 Signals can be chained to sequentially execute asynchronous operations, instead
 of nesting callbacks with blocks. This is similar to how [futures and promises][]
 are usually used:
@@ -279,12 +277,6 @@ That demonstrates some of what RAC can do, but it doesn't demonstrate why RAC is
 so powerful. It's hard to appreciate RAC from README-sized examples, but it
 makes it possible to write code with less state, less boilerplate, better code
 locality, and better expression of intent.
-
-
-
-
-
-
 
 For more sample code, check out [C-41][] or [GroceryList][], which are real iOS
 apps written using ReactiveObjC. Additional information about RAC can be found
